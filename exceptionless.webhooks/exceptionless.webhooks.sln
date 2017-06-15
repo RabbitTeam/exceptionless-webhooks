@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{0A3A9747-0A0D-47A6-AB91-6DC77670C710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptionless.WebHook.Abstractions", "Exceptionless.WebHook.Abstractions\Exceptionless.WebHook.Abstractions.csproj", "{37702FD2-77F9-482F-A21E-B88A33AA2D40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptionless.WebHook.DingTalk", "Exceptionless.WebHook.DingTalk\Exceptionless.WebHook.DingTalk.csproj", "{DDA628F0-EB63-4C34-A87D-C1296F5970DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A3A9747-0A0D-47A6-AB91-6DC77670C710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A3A9747-0A0D-47A6-AB91-6DC77670C710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A3A9747-0A0D-47A6-AB91-6DC77670C710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A3A9747-0A0D-47A6-AB91-6DC77670C710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37702FD2-77F9-482F-A21E-B88A33AA2D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37702FD2-77F9-482F-A21E-B88A33AA2D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37702FD2-77F9-482F-A21E-B88A33AA2D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37702FD2-77F9-482F-A21E-B88A33AA2D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDA628F0-EB63-4C34-A87D-C1296F5970DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA628F0-EB63-4C34-A87D-C1296F5970DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA628F0-EB63-4C34-A87D-C1296F5970DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA628F0-EB63-4C34-A87D-C1296F5970DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
