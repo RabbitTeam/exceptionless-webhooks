@@ -60,7 +60,7 @@ namespace Web.Middleware
 
                 var providers = GetProviders(request.Query);
 
-                var parameters = request.Query.ToDictionary(i => i.Key, i => i.Value.ToString());
+                var parameters = new Dictionary<string, string>(request.Query.ToDictionary(i => i.Key, i => i.Value.ToString()), StringComparer.OrdinalIgnoreCase);
                 foreach (var provider in providers)
                 {
                     try
@@ -77,8 +77,8 @@ namespace Web.Middleware
             catch (Exception e)
             {
                 _logger.LogError(0, e, "处理 Webhook 失败。");
+                throw;
             }
-            await _next(context);
         }
 
         #region Private Method

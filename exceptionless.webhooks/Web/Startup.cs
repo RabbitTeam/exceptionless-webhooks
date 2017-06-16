@@ -57,6 +57,7 @@ namespace Web
                 .AddConsole(Configuration.GetSection("Logging"))
                 .AddNLog();
 
+            app.UseStatusCodePages();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
