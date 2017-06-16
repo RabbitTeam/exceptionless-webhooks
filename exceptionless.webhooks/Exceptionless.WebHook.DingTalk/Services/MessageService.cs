@@ -43,7 +43,9 @@ namespace Exceptionless.WebHook.DingTalk.Services
                 {
                     var result = await client.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
                     var responseContent = await result.Content.ReadAsStringAsync();
-                    _logger.LogDebug(responseContent);
+
+                    if (_logger.IsEnabled(LogLevel.Debug))
+                        _logger.LogDebug(responseContent);
 
                     var response = JsonConvert.DeserializeObject<DingTalkResponseMessage>(responseContent);
                     if (response.ErrorCode > 0)
