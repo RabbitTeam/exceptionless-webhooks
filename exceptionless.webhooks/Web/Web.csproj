@@ -8,13 +8,29 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Exceptionless.NLog" Version="4.0.1951" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.4.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.3.0" />
+    <PackageReference Include="Exceptionless.AspNetCore" Version="4.0.1951" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Exceptionless.WebHook.Abstractions\Exceptionless.WebHook.Abstractions.csproj" />
     <ProjectReference Include="..\Exceptionless.WebHook.DingTalk\Exceptionless.WebHook.DingTalk.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="markdownTemplate.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="nlog.Development.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
