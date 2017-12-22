@@ -2,7 +2,9 @@
 using Microsoft.Extensions.FileProviders;
 using Rabbit.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,11 +39,27 @@ namespace Exceptionless.WebHook.Abstractions
 
             var properties = model.GetType().GetProperties();
             var builder = new StringBuilder(template);
+
+            var propertys = new Dictionary<string, string>();
+            string GetPropertyValue(PropertyInfo property)
+            {
+                if (propertys.TryGetValue(property.Name, out var value))
+                {
+                    return value;
+                }
+
+                value = property.GetValue(model)?.ToString();
+
+                propertys[property.Name] = value;
+
+                return value;
+            }
+
             foreach (var property in properties)
             {
                 var key = "{" + property.Name + "}";
                 if (template.Contains(key))
-                    builder.Replace(key, property.GetValue(model).ToString());
+                    builder.Replace(key, GetPropertyValue(property));
             }
             return builder.ToString();
         }

@@ -24,7 +24,7 @@ namespace Exceptionless.WebHook.DingTalk
 
         public async Task ProcessAsync(ExceptionlessEventModel model, IDictionary<string, string> parameters)
         {
-            parameters.TryGetValue("accessToken", out string accessToken);
+            parameters.TryGetValue("accessToken", out var accessToken);
             var content = await _fileTemplateService.GetContent("markdownTemplate.md", model);
 
             await _messageService.SendAsync(
