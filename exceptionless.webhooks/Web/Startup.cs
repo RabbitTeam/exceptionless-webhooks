@@ -1,11 +1,10 @@
-﻿using Exceptionless.WebHook.Abstractions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
-using NLog.Web;
+using Rabbit.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -15,20 +14,12 @@ namespace Web
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment hostingEnvironment)
+        public Startup(IConfiguration configuration)
         {
-            hostingEnvironment.ConfigureNLog("nlog" + (hostingEnvironment.IsProduction() ? string.Empty : $".{hostingEnvironment.EnvironmentName}") + ".config");
-
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(hostingEnvironment.ContentRootPath)
-                .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", true)
-                .AddEnvironmentVariables();
-
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -54,7 +45,6 @@ namespace Web
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory
-                .AddConsole(Configuration.GetSection("Logging"))
                 .AddNLog();
 
             app.UseStatusCodePages();
@@ -64,8 +54,7 @@ namespace Web
             }
 
             app
-                .UseMiddleware<ExceptionlessWebhookMiddleware>()
-                .AddNLogWeb();
+                .UseMiddleware<ExceptionlessWebhookMiddleware>();
         }
     }
 }

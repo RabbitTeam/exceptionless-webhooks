@@ -1,9 +1,8 @@
-﻿using Exceptionless.WebHook.Abstractions.DependencyInjection;
-using Microsoft.Extensions.Caching.Memory;
+﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.FileProviders;
+using Rabbit.Extensions.DependencyInjection;
 using System;
 using System.IO;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 

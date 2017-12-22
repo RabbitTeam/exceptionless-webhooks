@@ -1,4 +1,4 @@
-﻿using Exceptionless.WebHook.Abstractions.DependencyInjection;
+﻿using Rabbit.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

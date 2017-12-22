@@ -1,7 +1,6 @@
 ﻿using Exceptionless.WebHook.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -86,7 +85,7 @@ namespace Web.Middleware
         private IEnumerable<IWebHookProvider> GetProviders(IQueryCollection query)
         {
             var providers = _webHookProviders;
-            if (!query.TryGetValue("webhooks", out StringValues webhooks))
+            if (!query.TryGetValue("webhooks", out var webhooks))
                 return providers;
 
             var useHooks = webhooks.ToString().Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

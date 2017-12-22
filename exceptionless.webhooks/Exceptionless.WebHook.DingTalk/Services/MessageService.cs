@@ -1,8 +1,8 @@
-﻿using Exceptionless.WebHook.Abstractions.DependencyInjection;
-using Exceptionless.WebHook.DingTalk.Messages;
+﻿using Exceptionless.WebHook.DingTalk.Messages;
 using Exceptionless.WebHook.DingTalk.Utilitys;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Rabbit.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -37,12 +37,13 @@ namespace Exceptionless.WebHook.DingTalk.Services
             if (_logger.IsEnabled(LogLevel.Debug))
                 _logger.LogDebug($"send dingtalk json:{json}");
 
+            string responseContent = null;
             try
             {
                 using (var client = new HttpClient())
                 {
                     var result = await client.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
-                    var responseContent = await result.Content.ReadAsStringAsync();
+                    responseContent = await result.Content.ReadAsStringAsync();
 
                     if (_logger.IsEnabled(LogLevel.Debug))
                         _logger.LogDebug(responseContent);
@@ -54,7 +55,7 @@ namespace Exceptionless.WebHook.DingTalk.Services
             }
             catch (Exception e)
             {
-                _logger.LogError(0, e, $"向钉钉发送消息时失败，发送的数据：{json}。");
+                _logger.LogError(0, e, $"向钉钉发送消息时失败，钉钉返回的消息：{responseContent}，发送的数据：{json}。");
             }
         }
     }
