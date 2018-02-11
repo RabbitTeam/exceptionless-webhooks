@@ -46,9 +46,9 @@ namespace Web.Middleware
             if (_logger.IsEnabled(LogLevel.Debug))
                 _logger.LogDebug("接收到 Webhook 请求。");
 
+            var content = string.Empty;
             try
             {
-                string content;
                 using (var reader = new StreamReader(request.Body))
                     content = await reader.ReadToEndAsync();
 
@@ -69,13 +69,13 @@ namespace Web.Middleware
                     }
                     catch (Exception e)
                     {
-                        _logger.LogError(0, e, $"处理 {provider.Name} Webhook 时发生了异常。");
+                        _logger.LogError(0, e, $"处理 {provider.Name} Webhook 时发生了异常，内容：{content}。");
                     }
                 }
             }
             catch (Exception e)
             {
-                _logger.LogError(0, e, "处理 Webhook 失败。");
+                _logger.LogError(0, e, $"处理 Webhook 失败，内容：{content}。");
                 throw;
             }
         }
