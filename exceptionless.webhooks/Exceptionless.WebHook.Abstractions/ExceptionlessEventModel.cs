@@ -55,5 +55,8 @@ namespace Exceptionless.WebHook.Abstractions
 
         [JsonProperty("is_critical")]
         public bool IsCritical { get; set; }
+
+        [JsonProperty("ip_address")]
+        public string IpAddress { get; set; }
     }
 }

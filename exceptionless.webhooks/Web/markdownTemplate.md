@@ -5,4 +5,5 @@
 堆标题：{StackTitle}  
 第一次发生时间：{FirstOccurrence}  
 次数：{TotalOccurrences}  
+IP：{IpAddress}  
 [查看事件详情]({Url})
